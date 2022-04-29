@@ -1,10 +1,10 @@
 
  const assert = require('assert');
  const {Given,When,Then} = require('cucumber');
- const path = requite('path');
+ const path = require('path');
  const {ServiceBuilder} = require ('selenium-webdriver/chrome');
  const {Builder, By, Key, untill} = require('selenium-webdriver');
- const pathDriver = "C:/Users/Hamilton/Desktop/teste/html/projetoCSSHiring/pastaConteudoTestes/afdsthename/driver/chromedriver";
+ const pathDriver = "C:/Users/FINANCEIRO/Desktop/Hiring/projeto-JASMINE-CUCUMBER/afdsthename/driver/chromedriver.exe";
  const serviceBuilder = new ServiceBuilder(pathDriver);
  const driver = new Builder().forBrowser('chrome').setChromeService(serviceBuilder).build();
 
@@ -20,5 +20,7 @@
 
 
   Then('see the list of {string} itens', async function (string) {
-    assert(await driver.findElement(By.tagName('tr')).length).toBeEqual(10);
+    let qtd = await driver.findElement(By.tagName('tr')); 
+    assert.equal(qtd.length, parseInt(string));
+    await driver.quit();
 });
